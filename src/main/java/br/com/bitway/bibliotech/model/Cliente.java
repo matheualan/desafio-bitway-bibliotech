@@ -1,6 +1,7 @@
 package br.com.bitway.bibliotech.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -13,14 +14,15 @@ public class Cliente {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idCliente;
 
-    @Column(nullable = false, length = 100)
+    @Column(nullable = false, length = 70)
     private String nome;
 
     @Column(nullable = false, length = 11, unique = true)
     private Long cpf;
 
+    @CreationTimestamp
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
-    private final LocalDateTime criadoEm = LocalDateTime.now();
+    private LocalDateTime criadoEm;
 
 //    private Endereco endereco;
 
