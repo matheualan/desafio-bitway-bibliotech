@@ -20,12 +20,11 @@ public class Cliente {
     @Column(nullable = false, length = 11, unique = true)
     private Long cpf;
 
-    @CreationTimestamp
+    @CreationTimestamp //Verificar se funciona do mesmo modo igual quando já atribui valor por meio do LocalDateTime.now()
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
     private LocalDateTime criadoEm;
 
 //    private Endereco endereco;
-
 
     public Integer getIdCliente() {
         return idCliente;
