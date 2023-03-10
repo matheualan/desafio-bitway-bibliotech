@@ -23,7 +23,7 @@ public class FuncionarioController {
 
     @PostMapping(value = "/salvar")
     public ResponseEntity<FuncionarioDTO> salvar(@RequestBody @Valid FuncionarioDTO funcionarioDTO) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(funcionarioService.salvarDTO(funcionarioDTO);
+        return ResponseEntity.status(HttpStatus.CREATED).body(funcionarioService.salvarDTO(funcionarioDTO));
     }
 
 }
