@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
+import javax.validation.constraints.Pattern;
 import java.time.LocalDateTime;
 
 @Entity
@@ -18,7 +19,8 @@ public class Cliente {
     private String nome;
 
     @Column(nullable = false, length = 11, unique = true)
-    private Long cpf;
+    @Pattern(regexp = "^\\d{11}$")
+    private String cpf;
 
     @CreationTimestamp //Verificar se funciona do mesmo modo igual quando já atribui valor por meio do LocalDateTime.now()
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
@@ -42,11 +44,11 @@ public class Cliente {
         this.nome = nome;
     }
 
-    public Long getCpf() {
+    public String getCpf() {
         return cpf;
     }
 
-    public void setCpf(Long cpf) {
+    public void setCpf(String cpf) {
         this.cpf = cpf;
     }
 

@@ -9,9 +9,7 @@ public class ClienteDTO {
     private String nome;
 
     @NotNull(message = "Campo obrigatório")
-    @Min(value = 11) //testar se ele está recebendo 11 caracteres
-    @Max(value = 11) //ou se está podendo colocar apenas o número 11
-    private Long cpf;
+    private String cpf;
 
     public String getNome() {
         return nome;
@@ -21,11 +19,12 @@ public class ClienteDTO {
         this.nome = nome;
     }
 
-    public Long getCpf() {
+    public String getCpf() {
         return cpf;
     }
 
-    public void setCpf(Long cpf) {
+    public void setCpf(String cpf) {
         this.cpf = cpf;
     }
+
 }
