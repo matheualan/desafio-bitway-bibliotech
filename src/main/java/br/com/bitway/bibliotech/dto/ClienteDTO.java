@@ -4,7 +4,7 @@ import javax.validation.constraints.*;
 
 public class ClienteDTO {
 
-    @NotBlank
+    @NotBlank(message = "Campo obrigatório. Não pode ser nulo nem vazio.")
     @Size(min = 2, max = 70)
     private String nome;
 

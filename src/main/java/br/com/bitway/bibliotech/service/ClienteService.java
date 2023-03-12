@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ClienteService implements ClienteServiceRepo {
@@ -36,6 +37,10 @@ public class ClienteService implements ClienteServiceRepo {
             clienteDTOS.add(clienteDTO);
         }
         return clienteDTOS;
+    }
+
+    public Optional<ClienteDTO> findByCpf(String cpf) {
+        return clienteRepository.findByCpf(cpf);
     }
 
 }
