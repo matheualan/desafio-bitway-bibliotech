@@ -40,7 +40,9 @@ public class ClienteService implements ClienteServiceRepo {
     }
 
     public Optional<ClienteDTO> findByCpf(String cpf) {
-        return clienteRepository.findByCpf(cpf);
+        Cliente clienteEntidade = clienteRepository.findByCpf(cpf).get();
+        ClienteDTO clienteDTO = new ClienteDTO(clienteEntidade);
+        return Optional.of(clienteDTO);
     }
 
 }

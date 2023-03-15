@@ -31,7 +31,6 @@ public class ClienteController {
         return ResponseEntity.status(HttpStatus.OK).body(clienteService.listarDTO());
     }
 
-//    Método não DTO
     @GetMapping(value = "/buscarPorCPF/{cpf}")
     public ResponseEntity<Optional<ClienteDTO>> buscarPorCpf(@PathVariable(value = "cpf") String cpf) {
         return ResponseEntity.status(HttpStatus.OK).body(clienteService.findByCpf(cpf));

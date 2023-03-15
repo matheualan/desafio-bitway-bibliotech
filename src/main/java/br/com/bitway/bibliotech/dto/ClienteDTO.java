@@ -1,5 +1,7 @@
 package br.com.bitway.bibliotech.dto;
 
+import br.com.bitway.bibliotech.model.Cliente;
+
 import javax.validation.constraints.*;
 
 public class ClienteDTO {
@@ -8,8 +10,22 @@ public class ClienteDTO {
     @Size(min = 2, max = 70)
     private String nome;
 
-    @NotNull(message = "Campo obrigatório")
+    @NotBlank(message = "Campo obrigatório")
+    @Size(min = 11, max = 11, message = "Campo obrigatório devendo conter 11 dígitos numéricos.")
     private String cpf;
+
+    public ClienteDTO() {
+    }
+
+    public ClienteDTO(String nome, String cpf) {
+        this.nome = nome;
+        this.cpf = cpf;
+    }
+
+    public ClienteDTO(Cliente cliente) {
+        nome = cliente.getNome();
+        cpf = cliente.getCpf();
+    }
 
     public String getNome() {
         return nome;
