@@ -22,9 +22,8 @@ public class Cliente {
     @Pattern(regexp = "^\\d{11}$")
     private String cpf;
 
-    @CreationTimestamp //Verificar se funciona do mesmo modo igual quando já atribui valor por meio do LocalDateTime.now()
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
-    private LocalDateTime criadoEm;
+    private final LocalDateTime criadoEm = LocalDateTime.now();
 
 //    private Endereco endereco;
 

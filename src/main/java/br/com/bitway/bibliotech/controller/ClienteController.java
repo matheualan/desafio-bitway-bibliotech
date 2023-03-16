@@ -32,15 +32,14 @@ public class ClienteController {
     }
 
     @GetMapping(value = "/buscarPorCPF/{cpf}")
-    public ResponseEntity<Optional<ClienteDTO>> buscarPorCpf(@PathVariable(value = "cpf") String cpf) {
+    public ResponseEntity<Optional<ClienteDTO>> buscarPorCpfDTO(@PathVariable(value = "cpf") String cpf) {
         return ResponseEntity.status(HttpStatus.OK).body(clienteService.findByCpf(cpf));
     }
 
-//    @PatchMapping(value = "/atualizar/{cpf}")
-//    public ResponseEntity<Optional<ClienteDTO>> atualizar(@RequestBody @Valid ClienteDTO clienteDTO,
-//                                                @PathVariable(value = "cpf") String cpf) {
-//        Optional<ClienteDTO> clienteOptDTO = clienteService.findByCpf(cpf);
-//        return ResponseEntity.status(HttpStatus.OK).body(clienteOptDTO);
-//    }
+    @PatchMapping(value = "/atualizar/{cpf}")
+    public ResponseEntity<Optional<ClienteDTO>> atualizarPorCpfDTO(@PathVariable(value = "cpf") String cpf,
+                                                          @RequestBody @Valid ClienteDTO clienteDTO) {
+        return ResponseEntity.status(HttpStatus.OK).body(clienteService.atualizarClientePorCpf(cpf, clienteDTO));
+    }
 
 }

@@ -45,4 +45,13 @@ public class ClienteService implements ClienteServiceRepo {
         return Optional.of(clienteDTO);
     }
 
+    public Optional<ClienteDTO> atualizarClientePorCpf(String cpf, ClienteDTO clienteDTO) {
+        Cliente cliente = clienteRepository.findByCpf(cpf).get();
+        cliente.setNome(clienteDTO.getNome());
+        cliente.setCpf(clienteDTO.getCpf());
+        clienteRepository.save(cliente);
+        var clientDTO = new ClienteDTO(cliente);
+        return Optional.of(clientDTO);
+    }
+
 }
