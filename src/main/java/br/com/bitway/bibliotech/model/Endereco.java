@@ -28,6 +28,10 @@ public class Endereco {
     @Column
     private String complemento;
 
+    @ManyToOne
+    @JoinColumn(name = "cliente_id", referencedColumnName = "idCliente")
+    private Cliente cliente;
+
     public Integer getIdEndereco() {
         return idEndereco;
     }
@@ -84,4 +88,11 @@ public class Endereco {
         this.complemento = complemento;
     }
 
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
 }
