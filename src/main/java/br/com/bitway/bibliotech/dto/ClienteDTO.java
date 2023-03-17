@@ -11,7 +11,8 @@ public class ClienteDTO {
     private String nome;
 
     @NotBlank(message = "Campo obrigatório")
-    @Size(min = 11, max = 11, message = "Campo obrigatório devendo conter 11 dígitos numéricos.")
+    @Pattern(regexp = "^\\d{11}$")
+//    @Size(min = 11, max = 11, message = "Campo obrigatório devendo conter 11 dígitos numéricos.")
     private String cpf;
 
     public ClienteDTO() {

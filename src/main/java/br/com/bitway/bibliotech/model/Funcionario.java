@@ -3,6 +3,7 @@ package br.com.bitway.bibliotech.model;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.Pattern;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
@@ -16,6 +17,9 @@ public class Funcionario {
 
     @Column(nullable = false, length = 70)
     private String nome;
+
+    @Column(unique = true, nullable = false, length =  7)
+    private String registro;
 
     @Column(nullable = false, length = 50)
     private String cargo;
@@ -43,6 +47,14 @@ public class Funcionario {
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public String getRegistro() {
+        return registro;
+    }
+
+    public void setRegistro(String registro) {
+        this.registro = registro;
     }
 
     public String getCargo() {

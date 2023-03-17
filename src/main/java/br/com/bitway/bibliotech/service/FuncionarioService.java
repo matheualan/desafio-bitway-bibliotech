@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class FuncionarioService implements FuncionarioServiceRepo {
@@ -36,6 +37,16 @@ public class FuncionarioService implements FuncionarioServiceRepo {
             funcionarioDTOS.add(funcionarioDTO);
         }
         return funcionarioDTOS;
+    }
+
+    public Optional<FuncionarioDTO> atualizarFuncionarioPorCpf(String cpf, FuncionarioDTO funcionarioDTO) {
+        Funcionario funcionarioEntidade = funcionarioRepository.findByCpf(cpf).get();
+        funcionarioEntidade.setNome(funcionarioDTO.getNome());
+        funcionarioEntidade.setCargo(funcionarioDTO.getCargo());
+        funcionarioEntidade.setSalario(funcionarioDTO.getSalario());
+        funcionarioRepository.save(funcionarioEntidade);
+        var funcionarioOTD = new FuncionarioDTO(funcionarioEntidade);
+        return Optional.of(funcionarioOTD);
     }
 
 }
