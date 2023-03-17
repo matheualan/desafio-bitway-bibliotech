@@ -1,6 +1,7 @@
 package br.com.bitway.bibliotech.controller;
 
 import br.com.bitway.bibliotech.dto.ClienteDTO;
+import br.com.bitway.bibliotech.exceptions.ClienteNotFoundException;
 import br.com.bitway.bibliotech.model.Cliente;
 import br.com.bitway.bibliotech.service.ClienteService;
 import org.springframework.http.HttpStatus;
@@ -38,8 +39,18 @@ public class ClienteController {
 
     @PatchMapping(value = "/atualizar/{cpf}")
     public ResponseEntity<Optional<ClienteDTO>> atualizarPorCpfDTO(@PathVariable(value = "cpf") String cpf,
-                                                          @RequestBody @Valid ClienteDTO clienteDTO) {
+                                                                   @RequestBody @Valid ClienteDTO clienteDTO) {
         return ResponseEntity.status(HttpStatus.OK).body(clienteService.atualizarClientePorCpf(cpf, clienteDTO));
+    }
+
+    @DeleteMapping(value = "/deletarPorCp{cpf}")
+    public ResponseEntity<Optional<ClienteDTO>> deletePorCpf(@PathVariable(value = "cpf") String cpf) {
+        try {
+            clienteService.deletePorCpf(cpf);
+            return ResponseEntity.status(HttpStatus.OK).build();
+        } catch (ClienteNotFoundException exception) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
     }
 
 }

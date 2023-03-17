@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
@@ -40,18 +41,29 @@ public class ClienteService implements ClienteServiceRepo {
     }
 
     public Optional<ClienteDTO> findByCpf(String cpf) {
-        Cliente clienteEntidade = clienteRepository.findByCpf(cpf).get();
+        Cliente clienteEntidade = verifyIfExists(cpf);
         ClienteDTO clienteDTO = new ClienteDTO(clienteEntidade);
         return Optional.of(clienteDTO);
     }
 
     public Optional<ClienteDTO> atualizarClientePorCpf(String cpf, ClienteDTO clienteDTO) {
-        Cliente cliente = clienteRepository.findByCpf(cpf).get();
+        Cliente cliente = verifyIfExists(cpf);
         cliente.setNome(clienteDTO.getNome());
         cliente.setCpf(clienteDTO.getCpf());
         clienteRepository.save(cliente);
         var clientDTO = new ClienteDTO(cliente);
         return Optional.of(clientDTO);
+    }
+
+    public void deletePorCpf(String cpf) {
+        Cliente clienteEntidade = verifyIfExists(cpf);
+        clienteRepository.delete(clienteEntidade);
+    }
+
+    public Cliente verifyIfExists(String cpf) {
+        return clienteRepository.findByCpf(cpf).orElseThrow(
+                () -> new NoSuchElementException("Cliente não encontrado."));
+//        return clienteRepository.findByCpf(cpf).orElseThrow(() -> new ClienteNotFoundException(cpf));
     }
 
 }

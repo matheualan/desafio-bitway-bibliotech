@@ -40,7 +40,7 @@ public class FuncionarioService implements FuncionarioServiceRepo {
     }
 
     public Optional<FuncionarioDTO> atualizarFuncionarioPorCpf(String cpf, FuncionarioDTO funcionarioDTO) {
-        Funcionario funcionarioEntidade = funcionarioRepository.findByCpf(cpf).get();
+        Funcionario funcionarioEntidade = funcionarioRepository.findByRegistro(cpf).get();
         funcionarioEntidade.setNome(funcionarioDTO.getNome());
         funcionarioEntidade.setCargo(funcionarioDTO.getCargo());
         funcionarioEntidade.setSalario(funcionarioDTO.getSalario());
