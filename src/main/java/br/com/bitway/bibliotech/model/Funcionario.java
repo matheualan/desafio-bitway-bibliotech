@@ -32,7 +32,6 @@ public class Funcionario {
 
 //    private Endereco endereco;
 
-
     public Integer getIdFuncionario() {
         return idFuncionario;
     }

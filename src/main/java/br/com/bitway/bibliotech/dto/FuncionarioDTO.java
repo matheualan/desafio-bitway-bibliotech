@@ -23,6 +23,7 @@ public class FuncionarioDTO {
     @NotNull(message = "Campo obrigatório")
     @DecimalMin(value = "0.00")
     @DecimalMax(value = "12000.00")
+//    @Digits(integer = 5, fraction = 2);
     private BigDecimal salario;
 
     public FuncionarioDTO() {

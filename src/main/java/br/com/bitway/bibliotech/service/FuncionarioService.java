@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
@@ -39,7 +40,7 @@ public class FuncionarioService implements FuncionarioServiceRepo {
         return funcionarioDTOS;
     }
 
-    public Optional<FuncionarioDTO> atualizarFuncionarioPorCpf(String cpf, FuncionarioDTO funcionarioDTO) {
+    public Optional<FuncionarioDTO> attFuncionarioPorRegistro(String cpf, FuncionarioDTO funcionarioDTO) {
         Funcionario funcionarioEntidade = funcionarioRepository.findByRegistro(cpf).get();
         funcionarioEntidade.setNome(funcionarioDTO.getNome());
         funcionarioEntidade.setCargo(funcionarioDTO.getCargo());
@@ -47,6 +48,16 @@ public class FuncionarioService implements FuncionarioServiceRepo {
         funcionarioRepository.save(funcionarioEntidade);
         var funcionarioOTD = new FuncionarioDTO(funcionarioEntidade);
         return Optional.of(funcionarioOTD);
+    }
+
+    public void deletarPorRegistro(String registro) {
+        Funcionario funcionario = verifyIfExits(registro);
+        funcionarioRepository.delete(funcionario);
+    }
+
+    public Funcionario verifyIfExits(String registro) {
+        return funcionarioRepository.findByRegistro(registro)
+                .orElseThrow(() -> new NoSuchElementException("Funcionário não encontrado."));
     }
 
 }
