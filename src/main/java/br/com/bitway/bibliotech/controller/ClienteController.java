@@ -2,11 +2,8 @@ package br.com.bitway.bibliotech.controller;
 
 import br.com.bitway.bibliotech.dto.ClienteDTO;
 import br.com.bitway.bibliotech.exceptions.ClienteNotFoundException;
-import br.com.bitway.bibliotech.model.Cliente;
 import br.com.bitway.bibliotech.service.ClienteService;
-import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

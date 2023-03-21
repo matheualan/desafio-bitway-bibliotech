@@ -1,8 +1,12 @@
 package br.com.bitway.bibliotech.dto;
 
 import br.com.bitway.bibliotech.model.Cliente;
+import br.com.bitway.bibliotech.model.Endereco;
 
 import javax.validation.constraints.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class ClienteDTO {
 
@@ -15,17 +19,24 @@ public class ClienteDTO {
 //    @Size(min = 11, max = 11, message = "Campo obrigatório devendo conter 11 dígitos numéricos.")
     private String cpf;
 
+    private List<EnderecoDTO> enderecos;
+
     public ClienteDTO() {
     }
 
-    public ClienteDTO(String nome, String cpf) {
+    public ClienteDTO(String nome, String cpf, List<EnderecoDTO> enderecos) {
         this.nome = nome;
         this.cpf = cpf;
+        this.enderecos = enderecos;
     }
 
     public ClienteDTO(Cliente cliente) {
         nome = cliente.getNome();
         cpf = cliente.getCpf();
+        enderecos = new ArrayList<>();
+        for (Endereco endereco : cliente.getEnderecos()) {
+            enderecos.add(new EnderecoDTO());
+        }
     }
 
     public String getNome() {
@@ -44,4 +55,11 @@ public class ClienteDTO {
         this.cpf = cpf;
     }
 
+    public List<EnderecoDTO> getEnderecos() {
+        return enderecos;
+    }
+
+    public void setEnderecos(List<EnderecoDTO> enderecos) {
+        this.enderecos = enderecos;
+    }
 }

@@ -1,11 +1,10 @@
 package br.com.bitway.bibliotech.service;
 
 import br.com.bitway.bibliotech.dto.ClienteDTO;
+import br.com.bitway.bibliotech.exceptions.ClienteNotFoundException;
 import br.com.bitway.bibliotech.model.Cliente;
 import br.com.bitway.bibliotech.repository.ClienteRepository;
-import com.fasterxml.jackson.databind.util.BeanUtil;
 import org.springframework.beans.BeanUtils;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -64,9 +63,7 @@ public class ClienteService implements ClienteServiceRepo {
     }
 
     public Cliente verifyIfExists(String cpf) {
-        return clienteRepository.findByCpf(cpf).orElseThrow(
-                () -> new NoSuchElementException("Cliente não encontrado."));
-//        return clienteRepository.findByCpf(cpf).orElseThrow(() -> new ClienteNotFoundException(cpf));
+        return clienteRepository.findByCpf(cpf).orElseThrow(() -> new ClienteNotFoundException(cpf));
     }
 
 }

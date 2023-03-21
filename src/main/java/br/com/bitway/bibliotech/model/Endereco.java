@@ -29,7 +29,7 @@ public class Endereco {
     private String complemento;
 
     @ManyToOne
-    @JoinColumn(name = "cliente_id", referencedColumnName = "idCliente")
+    @JoinColumn(name = "clienteId", referencedColumnName = "idCliente")
     private Cliente cliente;
 
     public Integer getIdEndereco() {
