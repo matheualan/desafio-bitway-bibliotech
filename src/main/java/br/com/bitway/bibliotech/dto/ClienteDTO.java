@@ -3,10 +3,11 @@ package br.com.bitway.bibliotech.dto;
 import br.com.bitway.bibliotech.model.Cliente;
 import br.com.bitway.bibliotech.model.Endereco;
 
-import javax.validation.constraints.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class ClienteDTO {
 

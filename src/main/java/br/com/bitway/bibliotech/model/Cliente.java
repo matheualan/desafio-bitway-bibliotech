@@ -1,10 +1,8 @@
 package br.com.bitway.bibliotech.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
-import javax.validation.constraints.Pattern;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
