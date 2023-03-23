@@ -1,12 +1,10 @@
 package br.com.bitway.bibliotech.dto;
 
 import br.com.bitway.bibliotech.model.Cliente;
-import br.com.bitway.bibliotech.model.Endereco;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
-import java.util.ArrayList;
 import java.util.List;
 
 public class ClienteDTO {
@@ -34,10 +32,10 @@ public class ClienteDTO {
     public ClienteDTO(Cliente cliente) {
         nome = cliente.getNome();
         cpf = cliente.getCpf();
-        enderecos = new ArrayList<>();
-        for (Endereco endereco : cliente.getEnderecos()) {
-            enderecos.add(new EnderecoDTO());
-        }
+//        enderecos = new ArrayList<>();
+//        for (Endereco endereco : cliente.getEnderecos()) {
+//            enderecos.add(new EnderecoDTO(endereco));
+//        }
     }
 
     public String getNome() {

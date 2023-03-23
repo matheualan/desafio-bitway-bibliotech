@@ -25,7 +25,7 @@ public class Cliente {
     private final LocalDateTime criadoEm = LocalDateTime.now();
 
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Endereco> enderecos = new ArrayList<>();
+    private List<Endereco> enderecos;
 
     public Integer getIdCliente() {
         return idCliente;
