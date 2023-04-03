@@ -2,12 +2,10 @@ package br.com.bitway.bibliotech.controller;
 
 import br.com.bitway.bibliotech.dto.ClienteDTO;
 import br.com.bitway.bibliotech.exceptions.ClienteNotFoundException;
-import br.com.bitway.bibliotech.model.Cliente;
 import br.com.bitway.bibliotech.service.ClienteService;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

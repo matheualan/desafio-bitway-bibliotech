@@ -47,6 +47,7 @@ public class ClienteService implements ClienteServiceRepo {
 
     public Page<ClienteDTO> findAllPage(Pageable pageable) {
         List<Cliente> clientePage = clienteRepository.findAll(pageable).toList();
+//        List<Cliente> clientePage = clienteRepository.findAll();
         List<ClienteDTO> listDTO = new ArrayList<>();
         for (Cliente cliente : clientePage) {
             var clienteDTO = new ClienteDTO();
