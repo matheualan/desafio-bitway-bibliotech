@@ -1,10 +1,13 @@
 package br.com.bitway.bibliotech.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "tb_enderecos")
-public class Endereco {
+public class Endereco implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
