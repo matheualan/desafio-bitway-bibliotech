@@ -1,5 +1,7 @@
 package br.com.bitway.bibliotech.dto;
 
+import br.com.bitway.bibliotech.model.Endereco;
+
 import javax.validation.constraints.*;
 
 public class EnderecoDTO {
@@ -26,6 +28,18 @@ public class EnderecoDTO {
 
     @Size(min = 3, max = 100)
     private String complemento;
+
+    public EnderecoDTO() {
+    }
+
+    public EnderecoDTO(Endereco endereco) {
+        this.cep = endereco.getCep();
+        this.rua = endereco.getRua();
+        this.numero = endereco.getNumero();
+        this.bairro = endereco.getBairro();
+        this.cidade = endereco.getCidade();
+        this.complemento = endereco.getComplemento();
+    }
 
     public String getCep() {
         return cep;

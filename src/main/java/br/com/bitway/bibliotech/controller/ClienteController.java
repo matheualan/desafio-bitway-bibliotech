@@ -2,6 +2,7 @@ package br.com.bitway.bibliotech.controller;
 
 import br.com.bitway.bibliotech.dto.ClienteDTO;
 import br.com.bitway.bibliotech.exceptions.ClienteNotFoundException;
+import br.com.bitway.bibliotech.model.Cliente;
 import br.com.bitway.bibliotech.service.ClienteService;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import org.springframework.data.domain.Page;
@@ -31,9 +32,19 @@ public class ClienteController {
         return ResponseEntity.status(HttpStatus.CREATED).body(clienteService.salvarDTO(clienteDTO));
     }
 
+    @PostMapping(value = "/salvarClienteAndEndereco")
+    public ResponseEntity<ClienteDTO> salvarClienteAndEndereco(@RequestBody Cliente cliente) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(clienteService.salvarClienteAndEndereco(cliente));
+    }
+
     @GetMapping(value = "/listar")
     public ResponseEntity<List<ClienteDTO>> listarDTO() {
         return ResponseEntity.status(HttpStatus.OK).body(clienteService.listarDTO());
+    }
+
+    @GetMapping(value = "/listSensible")
+    public ResponseEntity<List<Cliente>> listClient() {
+        return ResponseEntity.status(HttpStatus.OK).body(clienteService.listarClientes());
     }
 
     @GetMapping(value = "/listaPaginada")

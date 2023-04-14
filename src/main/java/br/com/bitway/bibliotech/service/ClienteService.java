@@ -35,8 +35,32 @@ public class ClienteService implements ClienteServiceRepo {
 
     @Override
     public ClienteDTO salvarClienteAndEndereco(Cliente cliente) {
+        var client = new Cliente();
+        var clienteDTO = new ClienteDTO();
 
-        return null;
+        clienteDTO.setNome(cliente.getNome());
+        clienteDTO.setCpf(cliente.getCpf());
+        clienteDTO.setEnderecos(new ArrayList<>());
+
+        List<EnderecoDTO> enderecoDTOList = new ArrayList<>();
+        for (Endereco e : cliente.getEnderecos()) {
+            var enderecoDTO = new EnderecoDTO();
+//            BeanUtils.copyProperties(e, enderecoDTO);
+            enderecoDTO.setCep(e.getCep());
+            enderecoDTO.setRua(e.getRua());
+            enderecoDTO.setNumero(e.getNumero());
+            enderecoDTO.setBairro(e.getBairro());
+            enderecoDTO.setCidade(e.getCidade());
+            enderecoDTO.setComplemento(e.getComplemento());
+            enderecoDTOList.add(enderecoDTO);
+        }
+
+        clienteDTO.setEnderecos(enderecoDTOList);
+
+        BeanUtils.copyProperties(clienteDTO, client);
+        clienteRepository.save(client);
+
+        return clienteDTO;
     }
 
     @Override
@@ -49,6 +73,10 @@ public class ClienteService implements ClienteServiceRepo {
             clienteDTOS.add(clienteDTO);
         }
         return clienteDTOS;
+    }
+
+    public List<Cliente> listarClientes() {
+        return clienteRepository.findAll();
     }
 
     public Page<ClienteDTO> findAllPage(Pageable pageable) {
