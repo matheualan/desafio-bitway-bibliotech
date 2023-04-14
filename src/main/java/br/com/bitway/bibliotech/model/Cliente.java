@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -23,8 +24,8 @@ public class Cliente {
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
     private final LocalDateTime criadoEm = LocalDateTime.now();
 
-    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Endereco> enderecos;
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    private List<Endereco> enderecos = new ArrayList<>();
 
     public Integer getIdCliente() {
         return idCliente;

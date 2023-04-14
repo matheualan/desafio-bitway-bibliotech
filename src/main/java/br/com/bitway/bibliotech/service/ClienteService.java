@@ -34,6 +34,12 @@ public class ClienteService implements ClienteServiceRepo {
     }
 
     @Override
+    public ClienteDTO salvarClienteAndEndereco(Cliente cliente) {
+
+        return null;
+    }
+
+    @Override
     public List<ClienteDTO> listarDTO() {
         List<Cliente> clientes = clienteRepository.findAll();
         List<ClienteDTO> clienteDTOS = new ArrayList<>();
@@ -47,19 +53,22 @@ public class ClienteService implements ClienteServiceRepo {
 
     public Page<ClienteDTO> findAllPage(Pageable pageable) {
         List<Cliente> clientePage = clienteRepository.findAll(pageable).toList();
-//        List<Cliente> clientePage = clienteRepository.findAll();
         List<ClienteDTO> listDTO = new ArrayList<>();
+
         for (Cliente cliente : clientePage) {
             var clienteDTO = new ClienteDTO();
             clienteDTO.setNome(cliente.getNome());
             clienteDTO.setCpf(cliente.getCpf());
+
             List<EnderecoDTO> enderecoDTOList = new ArrayList<>();
             for (Endereco endereco : cliente.getEnderecos()) {
                 var enderecoDTO = new EnderecoDTO();
                 BeanUtils.copyProperties(endereco, enderecoDTO);
                 enderecoDTOList.add(enderecoDTO);
             }
+
             clienteDTO.setEnderecos(enderecoDTOList);
+            listDTO.add(clienteDTO);
         }
         Page<ClienteDTO> clienteDTOPage = new PageImpl<ClienteDTO>(listDTO);
         return clienteDTOPage;
