@@ -10,23 +10,23 @@ public class EnderecoDTO {
     @Size(min = 8, max = 8)
     private String cep;
 
-    @NotBlank(message = "O campo rua deve ser preenchido.")
-    @Size(min = 3, max = 255)
+//    @NotBlank(message = "O campo rua deve ser preenchido.")
+//    @Size(min = 3, max = 255)
     private String rua;
 
-    @NotNull(message = "Campo obrigatório")
-    @Digits(integer = 5, fraction = 0) //integer é o tamanho máximo e fraction é se possue casa decimal
+//    @NotNull(message = "Campo obrigatório")
+//    @Digits(integer = 5, fraction = 0) //integer é o tamanho máximo e fraction é se possue casa decimal
     private Integer numero;
 
-    @NotBlank
-    @Size(min = 2, max = 50)
+//    @NotBlank
+//    @Size(min = 2, max = 50)
     private String bairro;
 
-    @NotBlank
-    @Size(min = 2, max = 50)
+//    @NotBlank
+//    @Size(min = 2, max = 50)
     private String cidade;
 
-    @Size(min = 3, max = 100)
+//    @Size(min = 3, max = 100)
     private String complemento;
 
     public EnderecoDTO() {

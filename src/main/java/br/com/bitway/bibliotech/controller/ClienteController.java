@@ -33,8 +33,8 @@ public class ClienteController {
     }
 
     @PostMapping(value = "/salvarClienteAndEndereco")
-    public ResponseEntity<ClienteDTO> salvarClienteAndEndereco(@RequestBody Cliente cliente) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(clienteService.salvarClienteAndEndereco(cliente));
+    public ResponseEntity<ClienteDTO> salvarClienteAndEndereco(@RequestBody Cliente clienteDTO) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(clienteService.salvarClienteAndEndereco(clienteDTO));
     }
 
     @GetMapping(value = "/listar")

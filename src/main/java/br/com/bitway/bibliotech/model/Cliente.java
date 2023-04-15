@@ -1,7 +1,6 @@
 package br.com.bitway.bibliotech.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -14,7 +13,6 @@ public class Cliente {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @JsonIgnore
     private Integer idCliente;
 
     @Column(nullable = false, length = 70)
@@ -23,7 +21,6 @@ public class Cliente {
     @Column(nullable = false, length = 11, unique = true)
     private String cpf;
 
-    @JsonIgnore(value = true)
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
     private final LocalDateTime criadoEm = LocalDateTime.now();
 
