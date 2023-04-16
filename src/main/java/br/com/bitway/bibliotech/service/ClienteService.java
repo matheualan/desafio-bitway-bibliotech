@@ -83,7 +83,7 @@ public class ClienteService implements ClienteServiceRepo {
         clienteDTO.setCpf(cliente.getCpf());
         clienteDTO.setEnderecos(new ArrayList<>());
 
-//        List<EnderecoDTO> enderecoDTOList = new ArrayList<>();
+        List<EnderecoDTO> enderecoDTOList = new ArrayList<>();
         for (Endereco e : cliente.getEnderecos()) {
             var enderecoDTO = new EnderecoDTO();
 //            BeanUtils.copyProperties(e, enderecoDTO);
@@ -93,12 +93,12 @@ public class ClienteService implements ClienteServiceRepo {
             enderecoDTO.setBairro(e.getBairro());
             enderecoDTO.setCidade(e.getCidade());
             enderecoDTO.setComplemento(e.getComplemento());
-//            enderecoDTOList.add(enderecoDTO);
+            enderecoDTOList.add(enderecoDTO);
 //            Testar substituir a linha de cima por a linha de baixo
-            clienteDTO.getEnderecos().add(enderecoDTO);
+//            clienteDTO.getEnderecos().add(enderecoDTO);
         }
 
-//        clienteDTO.setEnderecos(enderecoDTOList);
+        clienteDTO.setEnderecos(enderecoDTOList);
 
         BeanUtils.copyProperties(clienteDTO, client);
         clienteRepository.save(client);
