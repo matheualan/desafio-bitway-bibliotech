@@ -27,7 +27,7 @@ public class ClienteController {
     }
 
     @ApiResponse(responseCode = "201 - Created", description = "Deve retornar 201 - Created ao salvar no banco de dados")
-    @PostMapping(value = "/salvar")
+    @PostMapping(value = "/salvarDTO")
     public ResponseEntity<ClienteDTO> salvarDTO(@RequestBody @Valid ClienteDTO clienteDTO) {
         return ResponseEntity.status(HttpStatus.CREATED).body(clienteService.salvarDTO(clienteDTO));
     }
