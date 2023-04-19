@@ -141,6 +141,10 @@ public class ClienteService {
         return Optional.of(clientDTO);
     }
 
+    public void deletarPorId(Integer id) {
+        clienteRepository.deleteById(id);
+    }
+
     public void deletePorCpf(String cpf) {
         Cliente clienteEntidade = verifyIfExists(cpf);
         clienteRepository.delete(clienteEntidade);

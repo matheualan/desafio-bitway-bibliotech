@@ -68,6 +68,12 @@ public class ClienteController {
         return ResponseEntity.status(HttpStatus.OK).body(clienteService.atualizarClientePorCpf(cpf, clienteDTO));
     }
 
+    @DeleteMapping(value = "/deletarPorId/{id}")
+    public ResponseEntity<Optional<ClienteDTO>> deletarPorId(@PathVariable(value = "id") Integer id) {
+        clienteService.deletarPorId(id);
+        return ResponseEntity.status(HttpStatus.OK).build();
+    }
+
     @DeleteMapping(value = "/deletarPorCpf/{cpf}")
     public ResponseEntity<Optional<ClienteDTO>> deletePorCpf(@PathVariable(value = "cpf") String cpf) {
         try {
