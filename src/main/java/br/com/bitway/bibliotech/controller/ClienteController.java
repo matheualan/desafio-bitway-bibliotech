@@ -32,9 +32,14 @@ public class ClienteController {
         return ResponseEntity.status(HttpStatus.CREATED).body(clienteService.salvarDTO(clienteDTO));
     }
 
-    @PostMapping(value = "/salvarClienteAndEndereco")
-    public ResponseEntity<ClienteDTO> salvarClienteAndEndereco(@RequestBody @Valid Cliente clienteDTO) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(clienteService.salvarClienteAndEndereco(clienteDTO));
+    @PostMapping(value = "/salvarEntidadeClienteEEndereco")
+    public ResponseEntity<ClienteDTO> salvarClienteAndEndereco(@RequestBody @Valid Cliente cliente) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(clienteService.salvarClienteAndEndereco(cliente));
+    }
+
+    @PostMapping(value = "/salvarDTOClienteEEndereco")
+    public ResponseEntity<ClienteDTO> salvarDTOParamClienteEEndereco(@RequestBody @Valid ClienteDTO clienteDTO) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(clienteService.salvarDTOClienteEEndereco(clienteDTO));
     }
 
     @GetMapping(value = "/listarDTO")
@@ -57,7 +62,7 @@ public class ClienteController {
         return ResponseEntity.status(HttpStatus.OK).body(clienteService.findByCpf(cpf));
     }
 
-    @PatchMapping(value = "/atualizar/{cpf}")
+    @PatchMapping(value = "/atualizarPorCpf/{cpf}")
     public ResponseEntity<Optional<ClienteDTO>> atualizarPorCpfDTO(@PathVariable(value = "cpf") String cpf,
                                                                    @RequestBody @Valid ClienteDTO clienteDTO) {
         return ResponseEntity.status(HttpStatus.OK).body(clienteService.atualizarClientePorCpf(cpf, clienteDTO));

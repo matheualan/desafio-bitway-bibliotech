@@ -36,52 +36,31 @@ public class ClienteService {
         return clienteDTO;
     }
 
-//    public ClienteDTO salvarClienteAndEndereco(ClienteDTO clienteDTO) {
-//        var clientEntity = new Cliente();
-//
-//        clientEntity.setNome(clienteDTO.getNome());
-//        clientEntity.setCpf((clienteDTO.getCpf()));
-//        clientEntity.setEnderecos(new ArrayList<>());
-//
-//        List<Endereco> enderecoList = new ArrayList<>();
-//        for (EnderecoDTO eDTO : clienteDTO.getEnderecos()) {
-//            Endereco endereco;
-//
-//            if (eDTO.getCep() != null) {
-//                endereco = enderecoRepository.findByCep(eDTO.getCep());
-//            } else {
-//                endereco = new Endereco();
-//            }
-//
-//            endereco.setCep(eDTO.getCep());
-//            endereco.setRua(eDTO.getRua());
-//            endereco.setNumero(eDTO.getNumero());
-//            endereco.setBairro(eDTO.getBairro());
-//            endereco.setCidade(eDTO.getCidade());
-//            endereco.setComplemento(eDTO.getComplemento());
-//            enderecoList.add(endereco);
-//
-//            clientEntity.getEnderecos().add(endereco);
-//        }
-//
-////        clientEntity.setEnderecos(enderecoList);
-//
-//        clienteRepository.save(clientEntity);
-//
-////        clienteDTO.set
-//
-//        return clienteDTO;
-//    }
+    public ClienteDTO salvarDTOClienteEEndereco(ClienteDTO clienteDTO) {
+        var clienteEntidade = new Cliente();
+
+        clienteEntidade.setNome(clienteDTO.getNome());
+        clienteEntidade.setCpf(clienteDTO.getCpf());
+
+        for (EnderecoDTO enderecoDTO : clienteDTO.getEnderecos()) {
+            var enderecoEntidade = new Endereco();
+            BeanUtils.copyProperties(enderecoDTO, enderecoEntidade);
+            clienteEntidade.getEnderecos().add(enderecoEntidade);
+        }
+
+        clienteRepository.save(clienteEntidade);
+//        criar uma variável DTO para receber os dados do clienteDTO do parâmetro
+        return clienteDTO;
+    }
 
     public ClienteDTO salvarClienteAndEndereco(Cliente cliente) {
-//        var client = new Cliente();
         var clienteDTO = new ClienteDTO();
 
         clienteDTO.setNome(cliente.getNome());
         clienteDTO.setCpf(cliente.getCpf());
         clienteDTO.setEnderecos(new ArrayList<>());
 
-        List<EnderecoDTO> enderecoDTOList = new ArrayList<>();
+//        List<EnderecoDTO> enderecoDTOList = new ArrayList<>();
         for (Endereco e : cliente.getEnderecos()) {
             var enderecoDTO = new EnderecoDTO();
 //            enderecoDTO.setCep(e.getCep());
@@ -91,14 +70,13 @@ public class ClienteService {
 //            enderecoDTO.setCidade(e.getCidade());
 //            enderecoDTO.setComplemento(e.getComplemento());
             BeanUtils.copyProperties(e, enderecoDTO);
-            enderecoDTOList.add(enderecoDTO);
+//            enderecoDTOList.add(enderecoDTO);
 //            Testar substituir a linha de cima por a linha de baixo
-//            clienteDTO.getEnderecos().add(enderecoDTO);
+            clienteDTO.getEnderecos().add(enderecoDTO);
         }
 
-        clienteDTO.setEnderecos(enderecoDTOList);
+//        clienteDTO.setEnderecos(enderecoDTOList);
 
-//        BeanUtils.copyProperties(clienteDTO, client);
         clienteRepository.save(cliente);
 
         return clienteDTO;
