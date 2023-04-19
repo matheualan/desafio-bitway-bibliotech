@@ -12,7 +12,7 @@ import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
-public class FuncionarioService implements FuncionarioServiceRepo {
+public class FuncionarioService {
 
     private final FuncionarioRepository funcionarioRepository;
 
@@ -20,7 +20,6 @@ public class FuncionarioService implements FuncionarioServiceRepo {
         this.funcionarioRepository = funcionarioRepository;
     }
 
-    @Override
     public FuncionarioDTO salvarDTO(FuncionarioDTO funcionarioDTO) {
         var funcionario = new Funcionario();
         BeanUtils.copyProperties(funcionarioDTO, funcionario);
@@ -28,7 +27,6 @@ public class FuncionarioService implements FuncionarioServiceRepo {
         return funcionarioDTO;
     }
 
-    @Override
     public List<FuncionarioDTO> listarDTO() {
         List<Funcionario> funcionarios = funcionarioRepository.findAll();
         List<FuncionarioDTO> funcionarioDTOS = new ArrayList<>();

@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class ClienteService implements ClienteServiceRepo {
+public class ClienteService {
 
     private final ClienteRepository clienteRepository;
     private final EnderecoRepository enderecoRepository;
@@ -29,7 +29,6 @@ public class ClienteService implements ClienteServiceRepo {
         this.enderecoRepository = enderecoRepository;
     }
 
-    @Override
     public ClienteDTO salvarDTO(ClienteDTO clienteDTO) {
         var cliente = new Cliente();
         BeanUtils.copyProperties(clienteDTO, cliente);
@@ -74,9 +73,8 @@ public class ClienteService implements ClienteServiceRepo {
 //        return clienteDTO;
 //    }
 
-    @Override
     public ClienteDTO salvarClienteAndEndereco(Cliente cliente) {
-        var client = new Cliente();
+//        var client = new Cliente();
         var clienteDTO = new ClienteDTO();
 
         clienteDTO.setNome(cliente.getNome());
@@ -86,13 +84,13 @@ public class ClienteService implements ClienteServiceRepo {
         List<EnderecoDTO> enderecoDTOList = new ArrayList<>();
         for (Endereco e : cliente.getEnderecos()) {
             var enderecoDTO = new EnderecoDTO();
-//            BeanUtils.copyProperties(e, enderecoDTO);
-            enderecoDTO.setCep(e.getCep());
-            enderecoDTO.setRua(e.getRua());
-            enderecoDTO.setNumero(e.getNumero());
-            enderecoDTO.setBairro(e.getBairro());
-            enderecoDTO.setCidade(e.getCidade());
-            enderecoDTO.setComplemento(e.getComplemento());
+            BeanUtils.copyProperties(e, enderecoDTO);
+//            enderecoDTO.setCep(e.getCep());
+//            enderecoDTO.setRua(e.getRua());
+//            enderecoDTO.setNumero(e.getNumero());
+//            enderecoDTO.setBairro(e.getBairro());
+//            enderecoDTO.setCidade(e.getCidade());
+//            enderecoDTO.setComplemento(e.getComplemento());
             enderecoDTOList.add(enderecoDTO);
 //            Testar substituir a linha de cima por a linha de baixo
 //            clienteDTO.getEnderecos().add(enderecoDTO);
@@ -100,13 +98,12 @@ public class ClienteService implements ClienteServiceRepo {
 
         clienteDTO.setEnderecos(enderecoDTOList);
 
-        BeanUtils.copyProperties(clienteDTO, client);
-        clienteRepository.save(client);
+//        BeanUtils.copyProperties(clienteDTO, client);
+        clienteRepository.save(cliente);
 
         return clienteDTO;
     }
 
-    @Override
     public List<ClienteDTO> listarDTO() {
         List<Cliente> clientes = clienteRepository.findAll();
         List<ClienteDTO> clienteDTOS = new ArrayList<>();
