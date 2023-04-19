@@ -3,9 +3,7 @@ package br.com.bitway.bibliotech.dto;
 import br.com.bitway.bibliotech.model.Cliente;
 import br.com.bitway.bibliotech.model.Endereco;
 
-import javax.persistence.OneToMany;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.util.List;
 
@@ -16,8 +14,8 @@ public class ClienteDTO {
     private String nome;
 
     @NotBlank(message = "Campo obrigatório")
-    @Pattern(regexp = "^\\d{11}$")
-//    @Size(min = 11, max = 11, message = "Campo obrigatório devendo conter 11 dígitos numéricos.")
+//    @Pattern(regexp = "^\\d{11}$")
+    @Size(min = 11, max = 11, message = "Campo obrigatório. Deve conter 11 dígitos numéricos.")
     private String cpf;
 
     private List<EnderecoDTO> enderecos;

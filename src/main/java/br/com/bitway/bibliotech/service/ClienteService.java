@@ -84,13 +84,13 @@ public class ClienteService {
         List<EnderecoDTO> enderecoDTOList = new ArrayList<>();
         for (Endereco e : cliente.getEnderecos()) {
             var enderecoDTO = new EnderecoDTO();
-            BeanUtils.copyProperties(e, enderecoDTO);
 //            enderecoDTO.setCep(e.getCep());
 //            enderecoDTO.setRua(e.getRua());
 //            enderecoDTO.setNumero(e.getNumero());
 //            enderecoDTO.setBairro(e.getBairro());
 //            enderecoDTO.setCidade(e.getCidade());
 //            enderecoDTO.setComplemento(e.getComplemento());
+            BeanUtils.copyProperties(e, enderecoDTO);
             enderecoDTOList.add(enderecoDTO);
 //            Testar substituir a linha de cima por a linha de baixo
 //            clienteDTO.getEnderecos().add(enderecoDTO);

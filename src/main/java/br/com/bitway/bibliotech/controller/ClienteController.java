@@ -33,7 +33,7 @@ public class ClienteController {
     }
 
     @PostMapping(value = "/salvarClienteAndEndereco")
-    public ResponseEntity<ClienteDTO> salvarClienteAndEndereco(@RequestBody Cliente clienteDTO) {
+    public ResponseEntity<ClienteDTO> salvarClienteAndEndereco(@RequestBody @Valid Cliente clienteDTO) {
         return ResponseEntity.status(HttpStatus.CREATED).body(clienteService.salvarClienteAndEndereco(clienteDTO));
     }
 
