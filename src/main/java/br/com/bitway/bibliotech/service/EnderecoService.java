@@ -3,9 +3,11 @@ package br.com.bitway.bibliotech.service;
 import br.com.bitway.bibliotech.dto.EnderecoDTO;
 import br.com.bitway.bibliotech.model.Endereco;
 import br.com.bitway.bibliotech.repository.EnderecoRepository;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -21,11 +23,18 @@ public class EnderecoService {
     }
 
     public List<Endereco> listarEnderecos() {
-        return null;
+        return enderecoRepository.findAll();
     }
 
     public List<EnderecoDTO> listarEnderecosDTO() {
-        return null;
+        List<Endereco> listEntity = enderecoRepository.findAll();
+        List<EnderecoDTO> listDTO = new ArrayList<>();
+        for (Endereco e : listEntity) {
+            var enderecoDTO = new EnderecoDTO();
+            BeanUtils.copyProperties(e, enderecoDTO);
+            listDTO.add(enderecoDTO);
+        }
+        return listDTO;
     }
 
 }
