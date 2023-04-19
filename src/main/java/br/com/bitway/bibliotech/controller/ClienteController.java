@@ -37,18 +37,18 @@ public class ClienteController {
         return ResponseEntity.status(HttpStatus.CREATED).body(clienteService.salvarClienteAndEndereco(clienteDTO));
     }
 
-    @GetMapping(value = "/listar")
+    @GetMapping(value = "/listarDTO")
     public ResponseEntity<List<ClienteDTO>> listarDTO() {
         return ResponseEntity.status(HttpStatus.OK).body(clienteService.listarDTO());
     }
 
-    @GetMapping(value = "/listSensible")
+    @GetMapping(value = "/listarEntidade")
     public ResponseEntity<List<Cliente>> listClient() {
         return ResponseEntity.status(HttpStatus.OK).body(clienteService.listarClientes());
     }
 
-    @GetMapping(value = "/listaPaginada")
-    public ResponseEntity<Page<ClienteDTO>> listaPaginada(@PageableDefault(page = 0, size = 3) Pageable pageable) {
+    @GetMapping(value = "/paginacao")
+    public ResponseEntity<Page<ClienteDTO>> listaPaginada(@PageableDefault(page = 0, size = 2) Pageable pageable) {
         return ResponseEntity.status(HttpStatus.OK).body(clienteService.findAllPage(pageable));
     }
 
@@ -63,7 +63,7 @@ public class ClienteController {
         return ResponseEntity.status(HttpStatus.OK).body(clienteService.atualizarClientePorCpf(cpf, clienteDTO));
     }
 
-    @DeleteMapping(value = "/deletarPorCp{cpf}")
+    @DeleteMapping(value = "/deletarPorCpf/{cpf}")
     public ResponseEntity<Optional<ClienteDTO>> deletePorCpf(@PathVariable(value = "cpf") String cpf) {
         try {
             clienteService.deletePorCpf(cpf);
