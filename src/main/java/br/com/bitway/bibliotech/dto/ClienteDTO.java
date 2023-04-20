@@ -33,7 +33,7 @@ public class ClienteDTO {
     public ClienteDTO(Cliente cliente) {
         this.nome = cliente.getNome();
         this.cpf = cliente.getCpf();
-        enderecos = new ArrayList<>();
+        this.enderecos = new ArrayList<>();
         for (Endereco endereco : cliente.getEnderecos()) {
             this.enderecos.add(new EnderecoDTO(endereco));
         }

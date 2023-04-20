@@ -49,9 +49,9 @@ public class ClienteService {
         }
 
         clienteRepository.save(clienteEntidade);
-//        criar uma variável DTO para receber os dados do clienteDTO do parâmetro
 
-        return new ClienteDTO(clienteEntidade);
+        var clientDTO = new ClienteDTO(clienteEntidade);
+        return clientDTO;
     }
 
     public ClienteDTO salvarClienteAndEndereco(Cliente cliente) {
@@ -87,8 +87,7 @@ public class ClienteService {
         List<Cliente> clientes = clienteRepository.findAll();
         List<ClienteDTO> clienteDTOS = new ArrayList<>();
         for (Cliente cliente : clientes) {
-            var clienteDTO = new ClienteDTO();
-            BeanUtils.copyProperties(cliente, clienteDTO);
+            var clienteDTO = new ClienteDTO(cliente);
             clienteDTOS.add(clienteDTO);
         }
         return clienteDTOS;
