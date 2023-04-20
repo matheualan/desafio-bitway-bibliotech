@@ -5,6 +5,7 @@ import br.com.bitway.bibliotech.model.Endereco;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ClienteDTO {
@@ -32,7 +33,7 @@ public class ClienteDTO {
     public ClienteDTO(Cliente cliente) {
         this.nome = cliente.getNome();
         this.cpf = cliente.getCpf();
-//        enderecos = new ArrayList<>();
+        enderecos = new ArrayList<>();
         for (Endereco endereco : cliente.getEnderecos()) {
             this.enderecos.add(new EnderecoDTO(endereco));
         }

@@ -50,7 +50,8 @@ public class ClienteService {
 
         clienteRepository.save(clienteEntidade);
 //        criar uma variável DTO para receber os dados do clienteDTO do parâmetro
-        return clienteDTO;
+
+        return new ClienteDTO(clienteEntidade);
     }
 
     public ClienteDTO salvarClienteAndEndereco(Cliente cliente) {
