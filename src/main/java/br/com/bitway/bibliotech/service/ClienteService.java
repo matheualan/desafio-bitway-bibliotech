@@ -151,7 +151,8 @@ public class ClienteService {
     }
 
     public Cliente verifyIfExists(String cpf) {
-        return clienteRepository.findByCpf(cpf).orElseThrow(() -> new ClienteNotFoundException(cpf));
+        return clienteRepository.findByCpf(cpf)
+                .orElseThrow(() -> new ClienteNotFoundException(cpf));
     }
 
 }
