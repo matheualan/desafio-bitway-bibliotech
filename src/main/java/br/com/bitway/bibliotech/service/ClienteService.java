@@ -2,6 +2,7 @@ package br.com.bitway.bibliotech.service;
 
 import br.com.bitway.bibliotech.dto.ClienteDTO;
 import br.com.bitway.bibliotech.dto.EnderecoDTO;
+//import br.com.bitway.bibliotech.exceptions.ClienteNotFoundException;
 import br.com.bitway.bibliotech.exceptions.ClienteNotFoundException;
 import br.com.bitway.bibliotech.model.Cliente;
 import br.com.bitway.bibliotech.model.Endereco;

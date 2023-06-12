@@ -4,7 +4,7 @@ import lombok.experimental.SuperBuilder;
 
 import java.util.NoSuchElementException;
 
-@SuperBuilder
+//@SuperBuilder
 public class ClienteNotFoundException extends NoSuchElementException {
 
     public ClienteNotFoundException(String cpf) {
