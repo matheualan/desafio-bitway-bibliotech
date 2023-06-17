@@ -1,19 +1,19 @@
 package br.com.bitway.bibliotech.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
 @Table(name = "tb_enderecos")
+@JsonIgnoreProperties(value = {"idEndereco", "cliente"})
 public class Endereco implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @JsonIgnore
     private Integer idEndereco;
 
     @Column(nullable = false)

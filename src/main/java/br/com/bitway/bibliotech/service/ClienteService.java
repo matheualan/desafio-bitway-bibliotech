@@ -2,7 +2,6 @@ package br.com.bitway.bibliotech.service;
 
 import br.com.bitway.bibliotech.dto.ClienteDTO;
 import br.com.bitway.bibliotech.dto.EnderecoDTO;
-//import br.com.bitway.bibliotech.exceptions.ClienteNotFoundException;
 import br.com.bitway.bibliotech.exceptions.ClienteNotFoundException;
 import br.com.bitway.bibliotech.model.Cliente;
 import br.com.bitway.bibliotech.model.Endereco;
@@ -64,7 +63,8 @@ public class ClienteService {
 
 //        List<EnderecoDTO> enderecoDTOList = new ArrayList<>();
         for (Endereco e : cliente.getEnderecos()) {
-            var enderecoDTO = new EnderecoDTO();
+            var enderecoDTO = new EnderecoDTO(e);
+            clienteDTO.getEnderecos().add(enderecoDTO);
 //            enderecoDTO.setCep(e.getCep());
 //            enderecoDTO.setRua(e.getRua());
 //            enderecoDTO.setNumero(e.getNumero());

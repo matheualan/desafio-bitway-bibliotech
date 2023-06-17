@@ -1,6 +1,7 @@
 package br.com.bitway.bibliotech.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -9,6 +10,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "tb_clientes")
+@JsonIgnoreProperties(value = {"idCliente", "criadoEm"})
 public class Cliente {
 
     @Id

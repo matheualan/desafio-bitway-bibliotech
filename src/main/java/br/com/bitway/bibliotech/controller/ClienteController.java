@@ -32,7 +32,7 @@ public class ClienteController {
         return ResponseEntity.status(HttpStatus.CREATED).body(clienteService.salvarDTO(clienteDTO));
     }
 
-    @PostMapping(value = "/salvarEntidadeClienteEEndereco")
+    @PostMapping(value = "/salvarClienteAndEndereco")
     public ResponseEntity<ClienteDTO> salvarClienteAndEndereco(@RequestBody @Valid Cliente cliente) {
         return ResponseEntity.status(HttpStatus.CREATED).body(clienteService.salvarClienteAndEndereco(cliente));
     }
