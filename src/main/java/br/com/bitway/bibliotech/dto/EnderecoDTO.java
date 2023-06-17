@@ -2,7 +2,8 @@ package br.com.bitway.bibliotech.dto;
 
 import br.com.bitway.bibliotech.model.Endereco;
 
-import javax.validation.constraints.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 public class EnderecoDTO {
 
@@ -28,6 +29,8 @@ public class EnderecoDTO {
 
 //    @Size(min = 3, max = 100)
     private String complemento;
+
+//    private ClienteDTO clienteDTO;
 
     public EnderecoDTO() {
     }
@@ -88,4 +91,12 @@ public class EnderecoDTO {
     public void setComplemento(String complemento) {
         this.complemento = complemento;
     }
+
+//    public ClienteDTO getClienteDTO() {
+//        return clienteDTO;
+//    }
+//
+//    public void setClienteDTO(ClienteDTO clienteDTO) {
+//        this.clienteDTO = clienteDTO;
+//    }
 }

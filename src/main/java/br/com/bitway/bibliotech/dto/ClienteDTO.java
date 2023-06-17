@@ -34,8 +34,8 @@ public class ClienteDTO {
         this.nome = cliente.getNome();
         this.cpf = cliente.getCpf();
         this.enderecos = new ArrayList<>();
-        for (Endereco endereco : cliente.getEnderecos()) {
-            this.enderecos.add(new EnderecoDTO(endereco));
+        for (Endereco enderecoEntidade : cliente.getEnderecos()) {
+            enderecos.add(new EnderecoDTO(enderecoEntidade));
         }
     }
 
