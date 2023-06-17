@@ -59,9 +59,6 @@ public class ClienteService {
 
         for (Endereco endereco : cliente.getEnderecos()) {
             endereco.setCliente(cliente);
-//            var enderecoDTO = new EnderecoDTO(endereco);
-//            clienteDTO.getEnderecos().add(enderecoDTO);
-//            enderecoDTO.setClienteDTO(clienteDTO);
         }
 
         clienteRepository.save(cliente);
