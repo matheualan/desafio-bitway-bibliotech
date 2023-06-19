@@ -31,44 +31,21 @@ public class ClienteService {
 
     public ClienteDTO salvarDTO(ClienteDTO clienteDTO) {
         var cliente = new Cliente(clienteDTO);
-
         for (Endereco endereco : cliente.getEnderecos()) {
             endereco.setCliente(cliente);
         }
-
         clienteRepository.save(cliente);
         return clienteDTO;
     }
 
-    //    MÉTODO OK - SALVANDO E RETORNANDO COM SUCESSO CLIENTE E ENDERECO
     public ClienteDTO salvarEntidade(Cliente cliente) {
         var clienteDTO = new ClienteDTO(cliente);
-
         for (Endereco endereco : cliente.getEnderecos()) {
             endereco.setCliente(cliente);
         }
-
         clienteRepository.save(cliente);
         return clienteDTO;
     }
-
-//    public ClienteDTO salvarDTOClienteEEndereco(ClienteDTO clienteDTO) {
-//        var clienteEntidade = new Cliente();
-//
-//        clienteEntidade.setNome(clienteDTO.getNome());
-//        clienteEntidade.setCpf(clienteDTO.getCpf());
-//
-//        for (EnderecoDTO enderecoDTO : clienteDTO.getEnderecos()) {
-//            var enderecoEntidade = new Endereco();
-//            BeanUtils.copyProperties(enderecoDTO, enderecoEntidade);
-//            clienteEntidade.getEnderecos().add(enderecoEntidade);
-//        }
-//
-//        clienteRepository.save(clienteEntidade);
-//
-//        var clientDTO = new ClienteDTO(clienteEntidade);
-//        return clientDTO;
-//    }
 
     public List<ClienteDTO> listarDTO() {
         List<Cliente> clientes = clienteRepository.findAll();
@@ -80,11 +57,11 @@ public class ClienteService {
         return clienteDTOS;
     }
 
-    public List<Cliente> listarClientes() {
+    public List<Cliente> listarEntidade() {
         return clienteRepository.findAll();
     }
 
-    public Page<ClienteDTO> findAllPage(Pageable pageable) {
+    public Page<ClienteDTO> listaPaginada(Pageable pageable) {
         List<Cliente> clientePage = clienteRepository.findAll(pageable).toList();
         List<ClienteDTO> listDTO = new ArrayList<>();
 
@@ -107,11 +84,6 @@ public class ClienteService {
         return clienteDTOPage;
     }
 
-//        Retorna uma lista paginada de ENTIDADE (OK)
-//    public Page<Cliente> findAllPage(Pageable pageable) {
-//        return clienteRepository.findAll(pageable);
-//    }
-
     public Optional<ClienteDTO> findByCpf(String cpf) {
         Cliente clienteEntidade = verifyIfExists(cpf);
         ClienteDTO clienteDTO = new ClienteDTO(clienteEntidade);
@@ -120,8 +92,6 @@ public class ClienteService {
 
     public Optional<ClienteDTO> atualizarClientePorCpf(String cpf, ClienteDTO clienteDTO) {
         Cliente cliente = verifyIfExists(cpf);
-//        cliente.setNome(clienteDTO.getNome());
-//        cliente.setCpf(clienteDTO.getCpf());
         BeanUtils.copyProperties(clienteDTO, cliente);
         clienteRepository.save(cliente);
         var clientDTO = new ClienteDTO(cliente);

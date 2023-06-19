@@ -37,11 +37,6 @@ public class ClienteController {
         return ResponseEntity.status(HttpStatus.CREATED).body(clienteService.salvarEntidade(cliente));
     }
 
-//    @PostMapping(value = "/salvarDTOClienteEEndereco")
-//    public ResponseEntity<ClienteDTO> salvarDTOParamClienteEEndereco(@RequestBody @Valid ClienteDTO clienteDTO) {
-//        return ResponseEntity.status(HttpStatus.CREATED).body(clienteService.salvarDTOClienteEEndereco(clienteDTO));
-//    }
-
     @GetMapping(value = "/listarDTO")
     public ResponseEntity<List<ClienteDTO>> listarDTO() {
         return ResponseEntity.status(HttpStatus.OK).body(clienteService.listarDTO());
@@ -49,12 +44,12 @@ public class ClienteController {
 
     @GetMapping(value = "/listarEntidade")
     public ResponseEntity<List<Cliente>> listClient() {
-        return ResponseEntity.status(HttpStatus.OK).body(clienteService.listarClientes());
+        return ResponseEntity.status(HttpStatus.OK).body(clienteService.listarEntidade());
     }
 
     @GetMapping(value = "/paginacao")
     public ResponseEntity<Page<ClienteDTO>> listaPaginada(@PageableDefault(page = 0, size = 2) Pageable pageable) {
-        return ResponseEntity.status(HttpStatus.OK).body(clienteService.findAllPage(pageable));
+        return ResponseEntity.status(HttpStatus.OK).body(clienteService.listaPaginada(pageable));
     }
 
     @GetMapping(value = "/buscarPorCPF/{cpf}")
