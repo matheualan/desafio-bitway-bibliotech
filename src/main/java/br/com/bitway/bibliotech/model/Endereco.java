@@ -1,5 +1,6 @@
 package br.com.bitway.bibliotech.model;
 
+import br.com.bitway.bibliotech.dto.EnderecoDTO;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
@@ -37,6 +38,18 @@ public class Endereco implements Serializable {
     @ManyToOne
     @JoinColumn(name = "clienteId", referencedColumnName = "idCliente")
     private Cliente cliente;
+
+    public Endereco() {
+    }
+
+    public Endereco(EnderecoDTO enderecoDTO) {
+        this.cep = enderecoDTO.getCep();
+        this.rua = enderecoDTO.getRua();
+        this.numero = enderecoDTO.getNumero();
+        this.bairro = enderecoDTO.getBairro();
+        this.cidade = enderecoDTO.getCidade();
+        this.complemento = enderecoDTO.getComplemento();
+    }
 
     public Integer getIdEndereco() {
         return idEndereco;

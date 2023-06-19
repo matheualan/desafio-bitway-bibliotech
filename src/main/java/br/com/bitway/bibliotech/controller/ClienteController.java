@@ -32,15 +32,15 @@ public class ClienteController {
         return ResponseEntity.status(HttpStatus.CREATED).body(clienteService.salvarDTO(clienteDTO));
     }
 
-    @PostMapping(value = "/salvarClienteAndEndereco")
+    @PostMapping(value = "/salvarEntidade")
     public ResponseEntity<ClienteDTO> salvarClienteAndEndereco(@RequestBody @Valid Cliente cliente) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(clienteService.salvarClienteAndEndereco(cliente));
+        return ResponseEntity.status(HttpStatus.CREATED).body(clienteService.salvarEntidade(cliente));
     }
 
-    @PostMapping(value = "/salvarDTOClienteEEndereco")
-    public ResponseEntity<ClienteDTO> salvarDTOParamClienteEEndereco(@RequestBody @Valid ClienteDTO clienteDTO) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(clienteService.salvarDTOClienteEEndereco(clienteDTO));
-    }
+//    @PostMapping(value = "/salvarDTOClienteEEndereco")
+//    public ResponseEntity<ClienteDTO> salvarDTOParamClienteEEndereco(@RequestBody @Valid ClienteDTO clienteDTO) {
+//        return ResponseEntity.status(HttpStatus.CREATED).body(clienteService.salvarDTOClienteEEndereco(clienteDTO));
+//    }
 
     @GetMapping(value = "/listarDTO")
     public ResponseEntity<List<ClienteDTO>> listarDTO() {

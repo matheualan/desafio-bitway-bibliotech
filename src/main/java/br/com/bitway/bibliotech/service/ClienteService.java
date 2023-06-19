@@ -30,31 +30,18 @@ public class ClienteService {
     }
 
     public ClienteDTO salvarDTO(ClienteDTO clienteDTO) {
-        var cliente = new Cliente();
-        BeanUtils.copyProperties(clienteDTO, cliente);
+        var cliente = new Cliente(clienteDTO);
+
+        for (Endereco endereco : cliente.getEnderecos()) {
+            endereco.setCliente(cliente);
+        }
+
         clienteRepository.save(cliente);
         return clienteDTO;
     }
 
-    public ClienteDTO salvarDTOClienteEEndereco(ClienteDTO clienteDTO) {
-        var clienteEntidade = new Cliente();
-
-        clienteEntidade.setNome(clienteDTO.getNome());
-        clienteEntidade.setCpf(clienteDTO.getCpf());
-
-        for (EnderecoDTO enderecoDTO : clienteDTO.getEnderecos()) {
-            var enderecoEntidade = new Endereco();
-            BeanUtils.copyProperties(enderecoDTO, enderecoEntidade);
-            clienteEntidade.getEnderecos().add(enderecoEntidade);
-        }
-
-        clienteRepository.save(clienteEntidade);
-
-        var clientDTO = new ClienteDTO(clienteEntidade);
-        return clientDTO;
-    }
-
-    public ClienteDTO salvarClienteAndEndereco(Cliente cliente) {
+    //    MÉTODO OK - SALVANDO E RETORNANDO COM SUCESSO CLIENTE E ENDERECO
+    public ClienteDTO salvarEntidade(Cliente cliente) {
         var clienteDTO = new ClienteDTO(cliente);
 
         for (Endereco endereco : cliente.getEnderecos()) {
@@ -64,6 +51,24 @@ public class ClienteService {
         clienteRepository.save(cliente);
         return clienteDTO;
     }
+
+//    public ClienteDTO salvarDTOClienteEEndereco(ClienteDTO clienteDTO) {
+//        var clienteEntidade = new Cliente();
+//
+//        clienteEntidade.setNome(clienteDTO.getNome());
+//        clienteEntidade.setCpf(clienteDTO.getCpf());
+//
+//        for (EnderecoDTO enderecoDTO : clienteDTO.getEnderecos()) {
+//            var enderecoEntidade = new Endereco();
+//            BeanUtils.copyProperties(enderecoDTO, enderecoEntidade);
+//            clienteEntidade.getEnderecos().add(enderecoEntidade);
+//        }
+//
+//        clienteRepository.save(clienteEntidade);
+//
+//        var clientDTO = new ClienteDTO(clienteEntidade);
+//        return clientDTO;
+//    }
 
     public List<ClienteDTO> listarDTO() {
         List<Cliente> clientes = clienteRepository.findAll();

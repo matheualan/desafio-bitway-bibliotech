@@ -1,5 +1,7 @@
 package br.com.bitway.bibliotech.model;
 
+import br.com.bitway.bibliotech.dto.ClienteDTO;
+import br.com.bitway.bibliotech.dto.EnderecoDTO;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -28,6 +30,18 @@ public class Cliente {
 
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     private List<Endereco> enderecos = new ArrayList<>();
+
+    public Cliente() {
+    }
+
+    public Cliente(ClienteDTO clienteDTO) {
+        nome = clienteDTO.getNome();
+        cpf = clienteDTO.getCpf();
+        enderecos = new ArrayList<>();
+        for (EnderecoDTO endDTO : clienteDTO.getEnderecos()) {
+            enderecos.add(new Endereco(endDTO));
+        }
+    }
 
     public Integer getIdCliente() {
         return idCliente;
