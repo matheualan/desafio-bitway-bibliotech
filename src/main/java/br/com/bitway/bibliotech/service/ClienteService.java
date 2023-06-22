@@ -2,11 +2,10 @@ package br.com.bitway.bibliotech.service;
 
 import br.com.bitway.bibliotech.dto.ClienteDTO;
 import br.com.bitway.bibliotech.dto.EnderecoDTO;
-import br.com.bitway.bibliotech.exceptions.ClienteNotFoundException;
+import br.com.bitway.bibliotech.exceptions.ClienteNaoEncontradoException;
 import br.com.bitway.bibliotech.model.Cliente;
 import br.com.bitway.bibliotech.model.Endereco;
 import br.com.bitway.bibliotech.repository.ClienteRepository;
-import br.com.bitway.bibliotech.repository.EnderecoRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -21,12 +20,9 @@ import java.util.Optional;
 public class ClienteService {
 
     private final ClienteRepository clienteRepository;
-    private final EnderecoRepository enderecoRepository;
 
-    public ClienteService(ClienteRepository clienteRepository,
-                          EnderecoRepository enderecoRepository) {
+    public ClienteService(ClienteRepository clienteRepository) {
         this.clienteRepository = clienteRepository;
-        this.enderecoRepository = enderecoRepository;
     }
 
     public ClienteDTO salvarDTO(ClienteDTO clienteDTO) {
@@ -102,14 +98,13 @@ public class ClienteService {
         clienteRepository.deleteById(id);
     }
 
-    public void deletePorCpf(String cpf) {
+    public void deletarPorCpf(String cpf) {
         Cliente clienteEntidade = verifyIfExists(cpf);
         clienteRepository.delete(clienteEntidade);
     }
 
     public Cliente verifyIfExists(String cpf) {
-        return clienteRepository.findByCpf(cpf)
-                .orElseThrow(() -> new ClienteNotFoundException(cpf));
+        return clienteRepository.findByCpf(cpf).orElseThrow(() -> new ClienteNaoEncontradoException(cpf));
     }
 
 }

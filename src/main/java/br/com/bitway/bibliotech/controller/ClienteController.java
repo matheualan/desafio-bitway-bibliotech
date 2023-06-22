@@ -1,7 +1,7 @@
 package br.com.bitway.bibliotech.controller;
 
 import br.com.bitway.bibliotech.dto.ClienteDTO;
-import br.com.bitway.bibliotech.exceptions.ClienteNotFoundException;
+import br.com.bitway.bibliotech.exceptions.ClienteNaoEncontradoException;
 import br.com.bitway.bibliotech.model.Cliente;
 import br.com.bitway.bibliotech.service.ClienteService;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -70,11 +70,11 @@ public class ClienteController {
     }
 
     @DeleteMapping(value = "/deletarPorCpf/{cpf}")
-    public ResponseEntity<Optional<ClienteDTO>> deletePorCpf(@PathVariable(value = "cpf") String cpf) {
+    public ResponseEntity<Optional<ClienteDTO>> deletarPorCpf(@PathVariable(value = "cpf") String cpf) {
         try {
-            clienteService.deletePorCpf(cpf);
+            clienteService.deletarPorCpf(cpf);
             return ResponseEntity.status(HttpStatus.OK).build();
-        } catch (ClienteNotFoundException exception) {
+        } catch (ClienteNaoEncontradoException exception) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
     }
