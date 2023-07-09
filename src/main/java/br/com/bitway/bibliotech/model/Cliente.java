@@ -4,6 +4,7 @@ import br.com.bitway.bibliotech.dto.ClienteDTO;
 import br.com.bitway.bibliotech.dto.EnderecoDTO;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.Builder;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
